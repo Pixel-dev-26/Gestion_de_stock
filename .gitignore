@@ -1,0 +1,13 @@
+# Node
+node_modules/
+
+# Vercel & Now
+.vercel/
+.now/
+.nowignore
+
+# Deployment temp
+instock-dashboard/.deploy_tmp/
+
+# Dist
+dist/
