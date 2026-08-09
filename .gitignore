@@ -11,3 +11,5 @@ instock-dashboard/.deploy_tmp/
 
 # Dist
 dist/
+.vercel
+.env*

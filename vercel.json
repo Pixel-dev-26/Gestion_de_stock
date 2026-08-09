@@ -1,12 +1,5 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "instock-dashboard/package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "instock-dashboard/dist" }
-    }
-  ],
   "routes": [
     { "src": "^/$", "dest": "/instock-dashboard/accueil.html" },
     { "src": "^/instock-dashboard/?$", "dest": "/instock-dashboard/dashboard.html" },
