@@ -1,0 +1,99 @@
+/* =========================================================
+   InStock — Design tokens (light & dark)
+   Identite visuelle heritee de la maquette : or/moutarde
+   comme couleur principale, accent orange brule, fond creme.
+   ========================================================= */
+
+:root{
+  /* --- Surfaces --- */
+  --bg:#faf5e3;
+  --surface:#fffdf9;
+  --surface-alt:#f6efdc;
+  --surface-hover:#f2e9d2;
+  --border:#e9dfc4;
+  --border-soft:#f0e8d4;
+
+  /* --- Texte --- */
+  --ink:#271f18;
+  --text-secondary:#6b6152;
+  --text-muted:#a89a7d;
+
+  /* --- Marque --- */
+  --primary:#b98d24;
+  --primary-dark:#8f6d1a;
+  --primary-light:#e6c164;
+  --primary-tint:#f2e4b8;
+  --primary-tint-soft:#faf5e3;
+
+  --accent:#bd5b1d;
+  --accent-tint:#f0ddc4;
+
+  --header-grad-start:#40340f;
+  --header-grad-mid:#b98d24;
+  --header-grad-end:#d9ab34;
+
+  /* --- Etats semantiques (neutres tant qu'il n'y a pas de donnees) --- */
+  --success:#4d7c4a;
+  --success-tint:#e3ecdf;
+  --warning:#b98d24;
+  --warning-tint:#f2e4b8;
+  --danger:#b3401f;
+  --danger-tint:#f2ddd0;
+  --neutral-track:#ece3cd;
+
+  /* --- Ombres --- */
+  --shadow-sm:0 2px 8px rgba(60,45,16,0.07);
+  --shadow-md:0 10px 26px -8px rgba(60,45,16,0.16);
+  --shadow-lg:0 22px 55px -14px rgba(60,45,16,0.24);
+
+  /* --- Radii --- */
+  --radius-lg:20px;
+  --radius-md:14px;
+  --radius-sm:10px;
+  --radius-pill:999px;
+
+  /* --- Rythme --- */
+  --ease:cubic-bezier(.22,.61,.36,1);
+
+  color-scheme: light;
+}
+
+.dark{
+  --bg:#181209;
+  --surface:#231b10;
+  --surface-alt:#2b2113;
+  --surface-hover:#332815;
+  --border:#3a2e18;
+  --border-soft:#2f2515;
+
+  --ink:#f4ecd8;
+  --text-secondary:#cdbf9c;
+  --text-muted:#8d8065;
+
+  --primary:#e0b23f;
+  --primary-dark:#c99a30;
+  --primary-light:#f0d488;
+  --primary-tint:#3a2e15;
+  --primary-tint-soft:#2b2113;
+
+  --accent:#e07a3a;
+  --accent-tint:#3a2717;
+
+  --header-grad-start:#120d06;
+  --header-grad-mid:#3a2e10;
+  --header-grad-end:#c99a30;
+
+  --success:#8fbf85;
+  --success-tint:#243021;
+  --warning:#e0b23f;
+  --warning-tint:#3a2e15;
+  --danger:#e0764f;
+  --danger-tint:#3a2417;
+  --neutral-track:#332815;
+
+  --shadow-sm:0 2px 10px rgba(0,0,0,0.28);
+  --shadow-md:0 12px 30px -8px rgba(0,0,0,0.4);
+  --shadow-lg:0 26px 60px -14px rgba(0,0,0,0.5);
+
+  color-scheme: dark;
+}

@@ -1,0 +1,30 @@
+.skeleton-block{
+  display:block;
+  background:linear-gradient(90deg, var(--surface-alt) 25%, var(--surface-hover) 37%, var(--surface-alt) 63%);
+  background-size:800px 100%;
+  animation:shimmer 1.6s linear infinite;
+}
+
+.skeleton-card{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  padding:20px;
+}
+.skeleton-card-lines{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  flex:1;
+  padding-top:2px;
+}
+
+.skeleton-chart{ width:100%; padding:4px; }
+
+.skeleton-row{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:14px 4px;
+  border-bottom:1px solid var(--border-soft);
+}

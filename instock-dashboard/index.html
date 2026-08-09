@@ -354,7 +354,7 @@
       <a href="#contact" class="nav-link">Contact</a>
       <div class="mm-actions">
         <a href="#" class="btn btn-outline">Se connecter</a>
-        <a href="#" class="btn btn-solid">Accéder au tableau de bord</a>
+        <a href="/instock-dashboard/dashboard.html" class="btn btn-solid">Accéder au tableau de bord</a>
       </div>
     </div>
   </div>
@@ -376,7 +376,7 @@
           <span class="chip">Produits</span>
           <span class="chip">Stocks</span>
           <a href="#" class="btn btn-outline btn-sm">Créer un produit</a>
-          <a href="#" class="btn btn-solid btn-sm">Accéder au tableau de bord</a>
+          <a href="/instock-dashboard/dashboard.html" class="btn btn-solid btn-sm">Accéder au tableau de bord</a>
         </div>
       </div>
     </div>
@@ -588,77 +588,100 @@
 </footer>
 
 <script>
-  // ---- Mobile menu toggle ----
-  const hamburgerBtn = document.getElementById('hamburgerBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  hamburgerBtn.addEventListener('click', () => {
-    hamburgerBtn.classList.toggle('open');
-    mobileMenu.classList.toggle('open');
-  });
-  document.querySelectorAll('.mobile-menu a').forEach(a=>{
-    a.addEventListener('click', ()=>{
-      hamburgerBtn.classList.remove('open');
-      mobileMenu.classList.remove('open');
-    });
-  });
+  document.addEventListener('DOMContentLoaded', () => {
+    // ---- Mobile menu toggle ----
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
 
-  // ---- Slider ----
-  const track = document.getElementById('sliderTrack');
-  const slides = Array.from(track.children);
-  const dotsWrap = document.getElementById('sliderDots');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  let current = 0;
-  let autoplay;
+    if (hamburgerBtn && mobileMenu) {
+      hamburgerBtn.addEventListener('click', () => {
+        hamburgerBtn.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+      });
 
-  slides.forEach((_, i) => {
-    const dot = document.createElement('button');
-    if(i === 0) dot.classList.add('active');
-    dot.addEventListener('click', () => goTo(i));
-    dotsWrap.appendChild(dot);
-  });
-  const dots = Array.from(dotsWrap.children);
+      document.querySelectorAll('.mobile-menu a').forEach((a) => {
+        a.addEventListener('click', () => {
+          hamburgerBtn.classList.remove('open');
+          mobileMenu.classList.remove('open');
+        });
+      });
+    }
 
-  function goTo(index){
-    current = (index + slides.length) % slides.length;
-    track.style.transform = `translateX(-${current * 100}%)`;
-    dots.forEach((d,i)=> d.classList.toggle('active', i === current));
-    restartAutoplay();
-  }
-  function next(){ goTo(current + 1); }
-  function prev(){ goTo(current - 1); }
+    // ---- Slider ----
+    const track = document.getElementById('sliderTrack');
+    if (track) {
+      const slides = Array.from(track.children);
+      const dotsWrap = document.getElementById('sliderDots');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
 
-  nextBtn.addEventListener('click', next);
-  prevBtn.addEventListener('click', prev);
+      if (dotsWrap && prevBtn && nextBtn && slides.length) {
+        let current = 0;
+        let autoplay;
 
-  function startAutoplay(){ autoplay = setInterval(next, 5000); }
-  function restartAutoplay(){ clearInterval(autoplay); startAutoplay(); }
-  startAutoplay();
+        slides.forEach((_, i) => {
+          const dot = document.createElement('button');
+          if (i === 0) dot.classList.add('active');
+          dot.addEventListener('click', () => goTo(i));
+          dotsWrap.appendChild(dot);
+        });
 
-  const sliderWrap = document.getElementById('sliderWrap');
-  sliderWrap.addEventListener('mouseenter', () => clearInterval(autoplay));
-  sliderWrap.addEventListener('mouseleave', startAutoplay);
+        const dots = Array.from(dotsWrap.children);
 
-  // basic swipe support
-  let touchStartX = 0;
-  sliderWrap.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX, {passive:true});
-  sliderWrap.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    if (dx > 40) prev();
-    else if (dx < -40) next();
-  }, {passive:true});
+        function goTo(index) {
+          current = (index + slides.length) % slides.length;
+          track.style.transform = `translateX(-${current * 100}%)`;
+          dots.forEach((d, i) => d.classList.toggle('active', i === current));
+          restartAutoplay();
+        }
 
-  // ---- Scroll reveal ----
-  const revealEls = document.querySelectorAll('.reveal, .card');
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add('in-view');
-        io.unobserve(entry.target);
+        function next() { goTo(current + 1); }
+        function prev() { goTo(current - 1); }
+
+        nextBtn.addEventListener('click', next);
+        prevBtn.addEventListener('click', prev);
+
+        function startAutoplay() { autoplay = setInterval(next, 5000); }
+        function restartAutoplay() { clearInterval(autoplay); startAutoplay(); }
+        startAutoplay();
+
+        const sliderWrap = document.getElementById('sliderWrap');
+        if (sliderWrap) {
+          sliderWrap.addEventListener('mouseenter', () => clearInterval(autoplay));
+          sliderWrap.addEventListener('mouseleave', startAutoplay);
+
+          // basic swipe support
+          let touchStartX = 0;
+          sliderWrap.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+          }, { passive: true });
+
+          sliderWrap.addEventListener('touchend', (e) => {
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            if (dx > 40) prev();
+            else if (dx < -40) next();
+          }, { passive: true });
+        }
       }
-    });
-  }, {threshold:0.12});
-  revealEls.forEach(el => io.observe(el));
+    }
+
+    // ---- Scroll reveal ----
+    const revealEls = document.querySelectorAll('.reveal, .card');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      revealEls.forEach((el) => io.observe(el));
+    } else {
+      revealEls.forEach((el) => el.classList.add('in-view'));
+    }
+  });
 </script>
 
 </body>

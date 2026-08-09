@@ -1,0 +1,46 @@
+.indicators-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+}
+
+@media (min-width:480px){
+  .indicators-grid{ grid-template-columns:1fr 1fr; }
+}
+
+.indicator-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px;
+  border-radius:var(--radius-sm);
+  background:var(--surface-alt);
+  transition:transform .25s var(--ease), background .25s var(--ease);
+}
+.indicator-item:hover{ transform:translateY(-2px); background:var(--surface-hover); }
+
+.indicator-icon{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  background:var(--surface);
+  color:var(--primary-dark);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  box-shadow:var(--shadow-sm);
+}
+
+.indicator-label{
+  font-size:12px;
+  color:var(--text-muted);
+  font-weight:600;
+}
+.indicator-value{
+  font-family:'Space Grotesk', sans-serif;
+  font-size:18px;
+  font-weight:700;
+  color:var(--ink);
+  margin-top:2px;
+}
