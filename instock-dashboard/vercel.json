@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/accueil.html" },
+    { "source": "/instock-dashboard", "destination": "/instock-dashboard/dashboard.html" },
+    { "source": "/instock-dashboard/", "destination": "/instock-dashboard/dashboard.html" },
+    { "source": "/instock-dashboard/:path*", "destination": "/instock-dashboard/:path*" }
+  ]
+}
