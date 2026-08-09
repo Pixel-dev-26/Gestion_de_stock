@@ -1,0 +1,7 @@
+{
+  "name": "gestion-de-stock-root",
+  "private": true,
+  "scripts": {
+    "build": "cd instock-dashboard && npm ci && npm run build"
+  }
+}
