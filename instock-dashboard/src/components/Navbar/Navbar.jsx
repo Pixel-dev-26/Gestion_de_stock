@@ -118,7 +118,7 @@ export default function Navbar({ isDark, onToggleTheme }) {
             </div>
           </div>
 
-          <a href="#" className="btn btn-primary btn-sm header-cta">
+          <a href="/connexion.html" className="btn btn-primary btn-sm header-cta">
             Se connecter
           </a>
 
@@ -149,7 +149,7 @@ export default function Navbar({ isDark, onToggleTheme }) {
             </a>
           ))}
           <div className="mm-actions">
-            <a href="#" className="btn btn-outline">
+            <a href="/connexion.html" className="btn btn-outline">
               Se connecter
             </a>
             <a href="/instock-dashboard/" className="btn btn-solid">

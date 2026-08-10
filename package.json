@@ -5,6 +5,7 @@
     "instock-dashboard"
   ],
   "scripts": {
+    "dev": "npm run dev --workspace=instock-dashboard",
     "build": "npm run build --workspace=instock-dashboard",
     "vercel-build": "npm run build --workspace=instock-dashboard"
   }

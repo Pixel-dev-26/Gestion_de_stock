@@ -8,7 +8,9 @@ const root = path.resolve(__dirname, '..');
 const accueilSrc = path.join(root, 'public', 'accueil.html');
 const accueilDest = path.join(root, '../dist', 'index.html');
 const accueilCopy = path.join(root, '../dist', 'accueil.html');
-const dashboardSrc = path.join(root, 'public', 'instock-dashboard', 'dashboard.html');
+const connexionSrc = path.join(root, '../dist/instock-dashboard', 'connexion.html');
+const connexionDest = path.join(root, '../dist', 'connexion.html');
+const dashboardSrc = path.join(root, '../dist/instock-dashboard', 'index.html');
 const dashboardDest = path.join(root, '../dist', 'instock-dashboard', 'dashboard.html');
 
 if (!fs.existsSync(path.join(root, '../dist', 'instock-dashboard'))) {
@@ -31,4 +33,5 @@ function copyFile(src, dest, label) {
 
 copyFile(accueilSrc, accueilDest, 'public/accueil.html -> ../dist/index.html');
 copyFile(accueilSrc, accueilCopy, 'public/accueil.html -> ../dist/accueil.html');
-copyFile(dashboardSrc, dashboardDest, 'public/instock-dashboard/dashboard.html -> ../dist/instock-dashboard/dashboard.html');
+copyFile(connexionSrc, connexionDest, 'connexion.html -> ../dist/connexion.html');
+copyFile(dashboardSrc, dashboardDest, 'built dashboard index.html -> ../dist/instock-dashboard/dashboard.html');

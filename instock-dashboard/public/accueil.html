@@ -34,6 +34,29 @@
     --ease:cubic-bezier(.22,.61,.36,1);
   }
 
+  html.dark{
+    color-scheme:dark;
+    --blue-900:#151006;
+    --blue-800:#2b210d;
+    --blue-700:#d0a536;
+    --blue-600:#e0b849;
+    --blue-500:#f0d487;
+    --blue-100:#4c3b17;
+    --blue-50:#241b0e;
+    --amber-500:#e07a3a;
+    --amber-100:#43291a;
+    --ink:#f4ecd8;
+    --gray-700:#d5c8a8;
+    --gray-500:#b7a987;
+    --gray-300:#635638;
+    --gray-100:#3b2e1b;
+    --gray-50:#1b150d;
+    --white:#fffaf0;
+    --shadow-sm:0 2px 10px rgba(0,0,0,.28);
+    --shadow-md:0 12px 30px -8px rgba(0,0,0,.4);
+    --shadow-lg:0 24px 60px -12px rgba(0,0,0,.5);
+  }
+
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
@@ -43,6 +66,7 @@
     background:var(--gray-50);
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
+    transition:background-color .35s var(--ease),color .35s var(--ease);
   }
   h1,h2,h3,.logo-word{font-family:'Space Grotesk',system-ui,sans-serif;}
   a{text-decoration:none;color:inherit;}
@@ -93,6 +117,19 @@
   .main-nav a:hover{background:rgba(255,255,255,.12);color:var(--white);}
   .main-nav a.active{color:var(--white);background:rgba(255,255,255,.16);}
   .header-actions{display:flex;align-items:center;gap:10px;}
+  .theme-toggle{
+    position:relative;width:40px;height:40px;border:1px solid rgba(255,255,255,.35);
+    border-radius:11px;background:rgba(255,255,255,.1);color:var(--white);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+    transition:background .25s var(--ease),transform .25s var(--ease),border-color .25s var(--ease);
+  }
+  .theme-toggle:hover{background:rgba(255,255,255,.2);transform:translateY(-2px);}
+  .theme-toggle:active{transform:translateY(0) scale(.94);}
+  .theme-toggle:focus-visible{outline:3px solid rgba(255,255,255,.35);outline-offset:2px;}
+  .theme-icon{position:absolute;display:flex;transition:opacity .35s var(--ease),transform .45s var(--ease);}
+  .theme-icon.is-hidden{opacity:0;transform:rotate(70deg) scale(.5);pointer-events:none;}
+  .theme-icon-moon{transform:rotate(0) scale(1);}
+  .theme-icon-moon.is-hidden{transform:rotate(-70deg) scale(.5);}
   .hamburger{
     display:flex;flex-direction:column;justify-content:center;gap:5px;
     width:40px;height:40px;border-radius:10px;border:none;background:rgba(255,255,255,.12);
@@ -146,7 +183,7 @@
     display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px;
   }
   .hero-title-row h1{
-    font-size:clamp(28px,5vw,42px);line-height:1.05;letter-spacing:-0.02em;margin:0;color:var(--ink);
+    font-size:clamp(32px,4vw,38px);line-height:1.1;letter-spacing:-0.025em;font-weight:600;margin:0;color:var(--ink);
   }
   .hero-title-row p.sub{margin:8px 0 0;color:var(--gray-500);font-size:15px;max-width:480px;}
   .breadcrumb-tools{
@@ -311,6 +348,7 @@
   /* ---------- Responsive helpers ---------- */
   @media (max-width:639.98px){
     .hero{padding-top:22px;}
+    .hero-title-row h1{font-size:clamp(30px,8.5vw,36px);line-height:1.08;}
     .slide{aspect-ratio:4/5;}
   }
   @media (min-width:640px) and (max-width:1023.98px){
@@ -338,8 +376,16 @@
     </nav>
 
     <div class="header-actions">
-      <a href="#" class="btn btn-ghost btn-sm" style="display:none" id="loginDesktop">Se connecter</a>
-      <a href="#" class="btn btn-primary btn-sm">Se connecter</a>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Activer le mode sombre" aria-pressed="false">
+        <span class="theme-icon" id="themeSun" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </span>
+        <span class="theme-icon theme-icon-moon is-hidden" id="themeMoon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </span>
+      </button>
+      <a href="/connexion.html" class="btn btn-ghost btn-sm" style="display:none" id="loginDesktop">Se connecter</a>
+      <a href="/connexion.html" class="btn btn-primary btn-sm">Se connecter</a>
       <button class="hamburger" id="hamburgerBtn" aria-label="Ouvrir le menu">
         <span></span><span></span><span></span>
       </button>
@@ -353,7 +399,7 @@
       <a href="#tarifs" class="nav-link">Tarifs</a>
       <a href="#contact" class="nav-link">Contact</a>
       <div class="mm-actions">
-        <a href="#" class="btn btn-outline">Se connecter</a>
+        <a href="/connexion.html" class="btn btn-outline">Se connecter</a>
         <a href="/instock-dashboard/" class="btn btn-solid">Accéder au tableau de bord</a>
       </div>
     </div>
@@ -589,6 +635,31 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    // ---- Theme toggle shared with the React dashboard ----
+    const themeToggle = document.getElementById('themeToggle');
+    const themeSun = document.getElementById('themeSun');
+    const themeMoon = document.getElementById('themeMoon');
+    const savedTheme = window.localStorage.getItem('instock-theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    let isDark = savedTheme === 'dark' || (savedTheme !== 'light' && prefersDark);
+
+    function applyTheme() {
+      document.documentElement.classList.toggle('dark', isDark);
+      themeSun.classList.toggle('is-hidden', isDark);
+      themeMoon.classList.toggle('is-hidden', !isDark);
+      themeToggle.setAttribute('aria-label', isDark ? 'Activer le mode clair' : 'Activer le mode sombre');
+      themeToggle.setAttribute('aria-pressed', String(isDark));
+    }
+
+    if (themeToggle && themeSun && themeMoon) {
+      applyTheme();
+      themeToggle.addEventListener('click', () => {
+        isDark = !isDark;
+        window.localStorage.setItem('instock-theme', isDark ? 'dark' : 'light');
+        applyTheme();
+      });
+    }
+
     // ---- Mobile menu toggle ----
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const mobileMenu = document.getElementById('mobileMenu');

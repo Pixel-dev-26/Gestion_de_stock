@@ -11,6 +11,8 @@
   ],
   "routes": [
     { "src": "^/$", "dest": "/accueil.html" },
-    { "src": "^/instock-dashboard/?$", "dest": "/instock-dashboard/index.html" }
+    { "src": "^/accueil.html$", "dest": "/accueil.html" },
+    { "src": "^/connexion.html$", "dest": "/connexion.html" },
+    { "src": "^/instock-dashboard/?$", "dest": "/instock-dashboard/dashboard.html" }
   ]
 }
