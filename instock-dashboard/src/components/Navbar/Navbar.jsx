@@ -143,7 +143,7 @@ export default function Navbar({ isDark, onToggleTheme }) {
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}
-              href="#"
+              href={link.href}
               className="nav-link"
               onClick={() => setMobileOpen(false)}
             >

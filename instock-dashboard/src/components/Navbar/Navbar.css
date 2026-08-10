@@ -276,9 +276,13 @@
 .mobile-menu a.nav-link{
   color:rgba(255,255,255,.88);
   font-weight:500;
+  min-height:44px;
+  display:flex;
+  align-items:center;
   padding:12px 6px;
   border-bottom:1px solid rgba(255,255,255,.1);
   transition:padding-left .2s var(--ease), color .2s var(--ease);
+  touch-action:manipulation;
 }
 .mobile-menu a.nav-link:hover{ padding-left:8px; color:#fff; }
 .mobile-menu .mm-actions{
@@ -287,7 +291,7 @@
   gap:10px;
   margin-top:14px;
 }
-.mobile-menu .btn{ width:100%; }
+.mobile-menu .btn{ width:100%; min-height:44px; touch-action:manipulation; }
 
 @media (min-width:900px){
   .main-nav{ display:flex; }
