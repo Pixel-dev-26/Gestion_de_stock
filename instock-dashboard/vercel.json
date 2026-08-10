@@ -4,6 +4,7 @@
     { "source": "/accueil.html", "destination": "/accueil.html" },
     { "source": "/connexion.html", "destination": "/connexion.html" },
     { "source": "/produits.html", "destination": "/produits.html" },
+    { "source": "/stocks.html", "destination": "/stocks.html" },
     { "source": "/instock-dashboard", "destination": "/instock-dashboard/dashboard.html" },
     { "source": "/instock-dashboard/", "destination": "/instock-dashboard/dashboard.html" },
     { "source": "/instock-dashboard/:path*", "destination": "/instock-dashboard/:path*" }

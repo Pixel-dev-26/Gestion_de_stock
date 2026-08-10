@@ -16,6 +16,7 @@ import './Navbar.css';
 const NAV_LINKS = [
   { label: 'Accueil', href: '/' , active: true },
   { label: 'Produits', href: '/produits.html', active: false },
+  { label: 'Stocks', href: '/stocks.html', active: false },
   { label: 'Fonctionnalités', href: '#', active: false },
   { label: 'Tarifs', href: '#', active: false },
   { label: 'Contact', href: '#', active: false },

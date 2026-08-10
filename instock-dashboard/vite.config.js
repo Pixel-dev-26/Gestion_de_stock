@@ -62,6 +62,22 @@ const routePlugin = {
         }
       }
 
+      if (pathname === '/stocks.html' || pathname === '/stocks') {
+        const stocksPath = path.join(__dirname, 'stocks.html');
+        try {
+          if (fs.existsSync(stocksPath)) {
+            let content = fs.readFileSync(stocksPath, 'utf-8');
+            content = await server.transformIndexHtml(req.url, content);
+            res.setHeader('Content-Type', 'text/html; charset=utf-8');
+            res.setHeader('Cache-Control', 'no-cache');
+            res.end(content);
+            return;
+          }
+        } catch (err) {
+          console.error('Error reading stocks.html:', err);
+        }
+      }
+
       const isDashboardRoute =
         pathname === '/instock-dashboard' ||
         pathname === '/instock-dashboard/' ||
@@ -102,6 +118,7 @@ export default defineConfig({
         path.resolve(__dirname, 'index.html'),
         path.resolve(__dirname, 'connexion.html'),
         path.resolve(__dirname, 'produits.html'),
+        path.resolve(__dirname, 'stocks.html'),
       ],
     },
   },

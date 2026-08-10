@@ -1,0 +1,2 @@
+import { PackageSearch, RotateCcw } from 'lucide-react';
+export default function StockEmptyState({ onResetFilters }) { return <section className="stock-empty"><PackageSearch size={30} /><h2>Aucun produit trouvé</h2><p>Modifiez votre recherche ou vos filtres pour afficher des résultats.</p><button type="button" onClick={onResetFilters}><RotateCcw size={15} /> Réinitialiser les filtres</button></section>; }
