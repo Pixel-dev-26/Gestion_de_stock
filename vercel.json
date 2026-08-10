@@ -2,7 +2,10 @@
   "version": 2,
   "rewrites": [
     { "source": "/", "destination": "/index.html" },
+    { "source": "/instock-dashboard/assets/:path*", "destination": "/instock-dashboard/assets/:path*" },
+    { "source": "/instock-dashboard/dashboard.html", "destination": "/instock-dashboard/dashboard.html" },
     { "source": "/instock-dashboard", "destination": "/instock-dashboard/index.html" },
+    { "source": "/instock-dashboard/", "destination": "/instock-dashboard/index.html" },
     { "source": "/instock-dashboard/:path*", "destination": "/instock-dashboard/index.html" }
   ]
 }

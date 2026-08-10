@@ -9,6 +9,7 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   base: '/instock-dashboard/',
+  publicDir: false,
   plugins: [react()],
   build: {
     outDir: path.resolve(__dirname, '../dist/instock-dashboard'),

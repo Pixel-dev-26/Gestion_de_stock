@@ -4,13 +4,15 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const root = path.resolve(__dirname, '..', '..');
-const accueilSrc = path.join(root, 'accueil.html');
-const accueilDest = path.join(root, 'dist', 'index.html');
-const accueilCopy = path.join(root, 'dist', 'accueil.html');
+const root = path.resolve(__dirname, '..');
+const accueilSrc = path.join(root, 'public', 'accueil.html');
+const accueilDest = path.join(root, '../dist', 'index.html');
+const accueilCopy = path.join(root, '../dist', 'accueil.html');
+const dashboardSrc = path.join(root, 'public', 'instock-dashboard', 'dashboard.html');
+const dashboardDest = path.join(root, '../dist', 'instock-dashboard', 'dashboard.html');
 
-if (!fs.existsSync(path.join(root, 'dist'))) {
-  fs.mkdirSync(path.join(root, 'dist'), { recursive: true });
+if (!fs.existsSync(path.join(root, '../dist', 'instock-dashboard'))) {
+  fs.mkdirSync(path.join(root, '../dist', 'instock-dashboard'), { recursive: true });
 }
 
 function copyFile(src, dest, label) {
@@ -27,5 +29,6 @@ function copyFile(src, dest, label) {
   }
 }
 
-copyFile(accueilSrc, accueilDest, 'accueil.html -> index.html');
-copyFile(accueilSrc, accueilCopy, 'accueil.html -> accueil.html');
+copyFile(accueilSrc, accueilDest, 'public/accueil.html -> ../dist/index.html');
+copyFile(accueilSrc, accueilCopy, 'public/accueil.html -> ../dist/accueil.html');
+copyFile(dashboardSrc, dashboardDest, 'public/instock-dashboard/dashboard.html -> ../dist/instock-dashboard/dashboard.html');
