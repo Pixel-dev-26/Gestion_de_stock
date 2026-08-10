@@ -152,7 +152,7 @@ export default function Navbar({ isDark, onToggleTheme }) {
             <a href="#" className="btn btn-outline">
               Se connecter
             </a>
-            <a href="/instock-dashboard/dashboard.html" className="btn btn-solid">
+            <a href="/instock-dashboard/" className="btn btn-solid">
               Accéder au tableau de bord
             </a>
           </div>

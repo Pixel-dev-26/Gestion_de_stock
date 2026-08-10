@@ -1,7 +1,11 @@
 {
   "name": "gestion-de-stock-root",
   "private": true,
+  "workspaces": [
+    "instock-dashboard"
+  ],
   "scripts": {
-    "build": "cd instock-dashboard && npm ci && npm run build"
+    "build": "npm run build --workspace=instock-dashboard",
+    "vercel-build": "npm run build --workspace=instock-dashboard"
   }
 }

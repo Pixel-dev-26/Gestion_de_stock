@@ -8,7 +8,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default defineConfig({
+  base: '/instock-dashboard/',
   plugins: [react()],
+  build: {
+    outDir: path.resolve(__dirname, '../dist/instock-dashboard'),
+    emptyOutDir: true,
+  },
   server: {
     port: 5173,
     middlewareMode: false,
@@ -38,11 +43,13 @@ export default defineConfig({
         }
       }
 
-      if (
+      const isDashboardRoute =
         pathname === '/instock-dashboard' ||
         pathname === '/instock-dashboard/' ||
-        pathname === '/instock-dashboard/index.html'
-      ) {
+        pathname === '/instock-dashboard/index.html' ||
+        (pathname.startsWith('/instock-dashboard/') && path.extname(pathname) === '');
+
+      if (isDashboardRoute) {
         const dashboardPath = path.join(__dirname, 'public', 'instock-dashboard', 'dashboard.html');
         try {
           if (fs.existsSync(dashboardPath)) {

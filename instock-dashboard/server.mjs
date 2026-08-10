@@ -20,20 +20,21 @@ const server = createServer((req, res) => {
     return;
   }
 
-  // Route /instock-dashboard and /instock-dashboard/ to dist/instock-dashboard/dashboard.html
+  // Route /instock-dashboard and SPA paths to the build entry
   if (
     pathname === '/instock-dashboard' ||
     pathname === '/instock-dashboard/' ||
-    pathname === '/instock-dashboard/index.html'
+    pathname === '/instock-dashboard/index.html' ||
+    (pathname.startsWith('/instock-dashboard/') && !path.extname(pathname))
   ) {
-    serveFile(path.join(__dirname, 'dist', 'instock-dashboard', 'dashboard.html'), res);
+    serveFile(path.join(__dirname, 'dist', 'instock-dashboard', 'index.html'), res);
     return;
   }
 
-  // For /instock-dashboard/*, serve from dist folder
+  // For /instock-dashboard/* asset requests, serve from dist folder
   if (pathname.startsWith('/instock-dashboard/')) {
     const relativePath = pathname.slice('/instock-dashboard/'.length);
-    const filePath = path.join(__dirname, 'dist', relativePath);
+    const filePath = path.join(__dirname, 'dist', 'instock-dashboard', relativePath);
     serveFile(filePath, res);
     return;
   }
