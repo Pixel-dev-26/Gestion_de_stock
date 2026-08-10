@@ -1,11 +1,16 @@
 {
   "version": 2,
-  "rewrites": [
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/instock-dashboard/assets/:path*", "destination": "/instock-dashboard/assets/:path*" },
-    { "source": "/instock-dashboard/dashboard.html", "destination": "/instock-dashboard/dashboard.html" },
-    { "source": "/instock-dashboard", "destination": "/instock-dashboard/index.html" },
-    { "source": "/instock-dashboard/", "destination": "/instock-dashboard/index.html" },
-    { "source": "/instock-dashboard/:path*", "destination": "/instock-dashboard/index.html" }
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    { "src": "^/$", "dest": "/accueil.html" },
+    { "src": "^/instock-dashboard/?$", "dest": "/instock-dashboard/index.html" }
   ]
 }
