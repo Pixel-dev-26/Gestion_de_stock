@@ -10,6 +10,8 @@ const accueilDest = path.join(root, '../dist', 'index.html');
 const accueilCopy = path.join(root, '../dist', 'accueil.html');
 const connexionSrc = path.join(root, '../dist/instock-dashboard', 'connexion.html');
 const connexionDest = path.join(root, '../dist', 'connexion.html');
+const assetsSrc = path.join(root, '../dist/instock-dashboard', 'assets');
+const assetsDest = path.join(root, '../dist', 'assets');
 const dashboardSrc = path.join(root, '../dist/instock-dashboard', 'index.html');
 const dashboardDest = path.join(root, '../dist', 'instock-dashboard', 'dashboard.html');
 
@@ -31,7 +33,22 @@ function copyFile(src, dest, label) {
   }
 }
 
+function copyDirectory(src, dest, label) {
+  try {
+    if (fs.existsSync(src)) {
+      fs.cpSync(src, dest, { recursive: true, force: true });
+      console.log(`postbuild: copied ${label}`);
+    } else {
+      console.log(`postbuild: source not found (${label}), skipping copy`);
+    }
+  } catch (err) {
+    console.error(`postbuild error (${label}):`, err);
+    process.exit(1);
+  }
+}
+
 copyFile(accueilSrc, accueilDest, 'public/accueil.html -> ../dist/index.html');
 copyFile(accueilSrc, accueilCopy, 'public/accueil.html -> ../dist/accueil.html');
 copyFile(connexionSrc, connexionDest, 'connexion.html -> ../dist/connexion.html');
+copyDirectory(assetsSrc, assetsDest, 'instock-dashboard/assets -> ../dist/assets');
 copyFile(dashboardSrc, dashboardDest, 'built dashboard index.html -> ../dist/instock-dashboard/dashboard.html');
