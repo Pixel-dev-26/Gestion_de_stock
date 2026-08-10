@@ -22,3 +22,4 @@ export default function useDarkMode() {
 
   return { theme, isDark: theme === 'dark', toggleTheme };
 }
+

@@ -46,6 +46,22 @@ const routePlugin = {
         }
       }
 
+      if (pathname === '/produits.html' || pathname === '/produits') {
+        const produitsPath = path.join(__dirname, 'produits.html');
+        try {
+          if (fs.existsSync(produitsPath)) {
+            let content = fs.readFileSync(produitsPath, 'utf-8');
+            content = await server.transformIndexHtml(req.url, content);
+            res.setHeader('Content-Type', 'text/html; charset=utf-8');
+            res.setHeader('Cache-Control', 'no-cache');
+            res.end(content);
+            return;
+          }
+        } catch (err) {
+          console.error('Error reading produits.html:', err);
+        }
+      }
+
       const isDashboardRoute =
         pathname === '/instock-dashboard' ||
         pathname === '/instock-dashboard/' ||
@@ -85,6 +101,7 @@ export default defineConfig({
       input: [
         path.resolve(__dirname, 'index.html'),
         path.resolve(__dirname, 'connexion.html'),
+        path.resolve(__dirname, 'produits.html'),
       ],
     },
   },

@@ -1,0 +1,9 @@
+import { Eye, MoreHorizontal, Pencil, Trash2 } from 'lucide-react';
+
+function statusClass(status) { return status === 'En stock' ? 'status-good' : status === 'Stock faible' ? 'status-low' : 'status-empty'; }
+const money = new Intl.NumberFormat('fr-MG', { style: 'currency', currency: 'MGA', maximumFractionDigits: 0 });
+
+export default function ProductTable({ products, loading, onView, onEdit, onDelete }) {
+  if (loading) return <div className="products-skeleton" aria-label="Chargement des produits">{Array.from({ length: 6 }, (_, index) => <div className="skeleton-row" key={index} />)}</div>;
+  return <div className="product-table-wrap"><table className="product-table"><thead><tr><th>Image</th><th>Produit</th><th>Référence</th><th>Catégorie</th><th>Prix</th><th>Stock</th><th>Seuil minimum</th><th>Statut</th><th><span className="sr-only">Actions</span></th></tr></thead><tbody>{products.map((product) => <tr key={product.id}><td><img className="product-thumb" src={product.image} alt="" /></td><td><strong>{product.name}</strong></td><td className="muted-cell">{product.reference}</td><td><span className="category-tag">{product.category}</span></td><td>{money.format(product.price)}</td><td><strong>{product.quantity}</strong></td><td className="muted-cell">{product.threshold}</td><td><span className={`status-badge ${statusClass(product.status)}`}>{product.status}</span></td><td><div className="row-actions"><button type="button" onClick={() => onView(product)} aria-label={`Voir ${product.name}`} title="Voir"><Eye size={16} /></button><button type="button" onClick={() => onEdit(product)} aria-label={`Modifier ${product.name}`} title="Modifier"><Pencil size={16} /></button><button type="button" onClick={() => onDelete(product)} aria-label={`Supprimer ${product.name}`} title="Supprimer"><Trash2 size={16} /></button><MoreHorizontal size={16} className="more-icon" aria-hidden="true" /></div></td></tr>)}</tbody></table></div>;
+}

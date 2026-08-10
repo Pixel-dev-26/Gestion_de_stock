@@ -10,6 +10,8 @@ const accueilDest = path.join(root, '../dist', 'index.html');
 const accueilCopy = path.join(root, '../dist', 'accueil.html');
 const connexionSrc = path.join(root, '../dist/instock-dashboard', 'connexion.html');
 const connexionDest = path.join(root, '../dist', 'connexion.html');
+const produitsSrc = path.join(root, '../dist/instock-dashboard', 'produits.html');
+const produitsDest = path.join(root, '../dist', 'produits.html');
 const assetsSrc = path.join(root, '../dist/instock-dashboard', 'assets');
 const assetsDest = path.join(root, '../dist', 'assets');
 const dashboardSrc = path.join(root, '../dist/instock-dashboard', 'index.html');
@@ -50,5 +52,6 @@ function copyDirectory(src, dest, label) {
 copyFile(accueilSrc, accueilDest, 'public/accueil.html -> ../dist/index.html');
 copyFile(accueilSrc, accueilCopy, 'public/accueil.html -> ../dist/accueil.html');
 copyFile(connexionSrc, connexionDest, 'connexion.html -> ../dist/connexion.html');
+copyFile(produitsSrc, produitsDest, 'produits.html -> ../dist/produits.html');
 copyDirectory(assetsSrc, assetsDest, 'instock-dashboard/assets -> ../dist/assets');
 copyFile(dashboardSrc, dashboardDest, 'built dashboard index.html -> ../dist/instock-dashboard/dashboard.html');

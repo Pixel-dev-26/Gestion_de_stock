@@ -13,6 +13,7 @@
     { "src": "^/$", "dest": "/accueil.html" },
     { "src": "^/accueil.html$", "dest": "/accueil.html" },
     { "src": "^/connexion.html$", "dest": "/connexion.html" },
+    { "src": "^/produits.html$", "dest": "/produits.html" },
     { "src": "^/instock-dashboard/?$", "dest": "/instock-dashboard/dashboard.html" }
   ]
 }
